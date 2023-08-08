@@ -1,0 +1,165 @@
+<!--    Old Premium search Query-->
+    <div id="premiumSearchQuery">
+        <div class="card shadow-none border position-relative py-3">
+            <h6 class="position-absolute heading-top-align">Premium Search Query</h6>
+            <div class="card-body-second">
+
+                <div class="text-right mb-3">
+                    <button class="border-0 bg-transparent" type="button" data-toggle="collapse"
+                            data-target="#addNewSearchQuery" aria-expanded="false"
+                            aria-controls="collapseExample">
+                        <span class="icon-co-big add"></span>
+                    </button>
+                </div>
+
+                <div class="collapse" id="addNewSearchQuery">
+                    <div class="">
+                        <form method="post" id="form1" name="form1">
+                            <div class="row">
+                                <div class="col-12 col-lg-3">
+                                    <div class="form-group">
+                                        <label for="queryType">Select Type:</label>
+                                        <select
+                                                class="form-control"
+                                                id="query_type"
+                                                name="query_type"
+                                                required
+                                        >
+                                            <option value="city">City</option>
+                                            <option value="zipcode">Zipcode</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-3 cities">
+                                    <div class="form-group">
+                                        <label for="query_value_state" class="mb-0">Select State</label>
+                                        <select name="query_value_state" id="query_value_state" class="form-control query_value_state">
+                                            <option value="select_state">Select State</option>
+                                            <?php
+                                            foreach($state_results as $result)
+                                            {
+                                                ?>
+                                                <option value="<?= $result['state_id']?>"><?= $result['state'] ?></option>
+                                                <?php
+                                            }
+                                            ?>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-3 cities">
+                                    <div class="form-group">
+                                        <label for="query_value" class="mb-0">Select City</label>
+                                        <select name="query_value" id="query_value_city" class="form-control query-value-city">
+                                            <option value="select_city">Select City</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-lg-3 zipcodes">
+                                    <div class="form-group">
+                                        <label for="query_value">Zipcode</label>
+                                        <input type="text"
+                                               name="query_value"
+                                               required
+                                               class="form-control mt-0"
+                                               id="query_value_zipcode"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-2 align-self-center">
+                                    <!--                                        <input type="button" name="send" class="btn btn-primary mt-2 w-100"-->
+                                    <!--                                               value="Add Data" id="addRow">-->
+
+                                    <input type="button" name="save" class="btn btn-primary mt-2 w-100"
+                                           value="Save"
+                                           id="btnSavePremiumQueryData">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <!-- invalid Zipcode HTML -->
+                <div id="invalidZipCode" class="modal fade">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header justify-content-center border-bottom-0">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    &times;
+                                </button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"
+                                         fill="currentColor" class="bi bi-x-circle text-danger"
+                                         viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </div>
+
+                                <h4 class="fw-bold text-center my-3"
+                                    style="color: #00000090">ZipCode is inValid</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Record Exist HTML -->
+                <div id="recordExists" class="modal fade">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header justify-content-center border-bottom-0">
+
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    &times;
+                                </button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"
+                                         fill="currentColor" class="bi bi-x-circle text-danger"
+                                         viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+
+                                </div>
+                                <h4 class="fw-bold text-center my-3"
+                                    style="color: #00000090">This record already exists!</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <table id="premiumQueryTable" name="premiumQueryTable" class="table table-bordered">
+
+                </table>
+                <div class="table-responsive">
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                        <tr>
+                            <th style="border-bottom: 1px solid #dddddd !important;">ID</th>
+                            <th style="border-bottom: 1px solid #dddddd !important;">Query Type</th>
+                            <th style="border-bottom: 1px solid #dddddd !important;">Query Value</th>
+                            <th class="text-center" style="border-bottom: 1px solid #dddddd !important;">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="showListing">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--   End Old Premium search Query-->
